@@ -1,0 +1,53 @@
+<head>
+  <title>Leaderboard</title>
+</head>
+
+<body>
+  <div id="outer">
+    {{> leaderboard}}
+  </div>
+</body>
+
+<template name="leaderboard">
+
+  {{#if players.length}}
+
+  <div class="leaderboard">
+    {{#each players}}
+      {{> player}}
+    {{/each}}
+  </div>
+
+  {{#if selected_name}}
+    <div class="details">
+      <div class="name">{{selected_name}}</div>
+      <input type="button" class="inc" value="Pot red"    data-points="1" data-foul="4" />
+      <input type="button" class="inc" value="Pot yellow" data-points="2" data-foul="4" />
+      <input type="button" class="inc" value="Pot green"  data-points="3" data-foul="4" />
+      <input type="button" class="inc" value="Pot brown"  data-points="4" data-foul="4" />
+      <input type="button" class="inc" value="Pot blue"   data-points="5" data-foul="5" />
+      <input type="button" class="inc" value="Pot pink"   data-points="6" data-foul="6" />
+      <input type="button" class="inc" value="Pot black"  data-points="7" data-foul="7" />
+    </div>
+  {{/if}}
+
+  {{#unless selected_name}}
+    <div class="none">Click a player to select</div>
+  {{/unless}}
+
+  {{else}}
+
+  <input name="player1" class="player" placeholder="player 1" />
+  <input name="player2" class="player" placeholder="player 2" />
+  <input type="button" class="new" value="Create game">
+
+  {{/if}}
+
+</template>
+
+<template name="player">
+  <div class="player {{selected}}">
+    <span class="name">{{name}}</span>
+    <span class="score">{{score}}</span>
+  </div>
+</template>
